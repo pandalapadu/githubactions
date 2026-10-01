@@ -1,12 +1,10 @@
-name: GitHub Actions Hello World
-
+name: Hello World
 # Triggers the workflow automatically on every git push to the main branch
 on:
   push:
     branches: [ "main" ]
   # Allows you to also trigger this workflow manually from the GitHub Actions tab
   workflow_dispatch:
-
 jobs:
   hello:
     # Specifies the type of virtual runner host machine (Ubuntu Linux)
