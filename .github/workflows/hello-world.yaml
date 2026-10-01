@@ -8,13 +8,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  say-hello:
+  hello:
     # Specifies the type of virtual runner host machine (Ubuntu Linux)
     runs-on: ubuntu-latest
     steps:
       # Step 1: Execute a standard shell script command string
       - name: Print Hello Message
-        run: |
-          echo "Hello, World!"
-          echo "Current runner environment: Linux Ubuntu"
-          echo "Triggered by actor: ${{ github.actor }}"
+        run: echo "Hello, World!"
