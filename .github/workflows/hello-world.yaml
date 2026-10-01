@@ -11,13 +11,8 @@ jobs:
   say-hello:
     # Specifies the type of virtual runner host machine (Ubuntu Linux)
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Check out the repository source code onto the runner machine
-      - name: Checkout Repository Code
-        uses: actions/checkout@v4
-
-      # Step 2: Execute a standard shell script command string
+      # Step 1: Execute a standard shell script command string
       - name: Print Hello Message
         run: |
           echo "Hello, World!"
