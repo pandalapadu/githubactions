@@ -1,7 +1,7 @@
 name: Hello World
 # Triggers the workflow automatically on every git push to the main branch
 on:
-  push:
+  push
 jobs:
   hello-first:
     runs-on: ubuntu-latest
