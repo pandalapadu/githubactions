@@ -1,0 +1,16 @@
+name: Context workflow
+on:
+  push
+env:
+    project: "roboshop"
+    componenet: "catalogue"
+    environment: "dev"
+jobs:
+  hello-first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step-1 
+        run: |
+            echo "Project: ${{ env.project }}"
+            echo "Component: ${{ env.componenet }}"
+            echo "Environment: ${{ env.environment }}"
