@@ -6,7 +6,7 @@ on:
 jobs:
   my-first-job: 
     runs-on: ubuntu-latest
-    steps:
+    steps: # this give us full event of triggered action
       - name: event triggered data 
         run: |
             cat "$GITHUB_EVENT_PATH"
