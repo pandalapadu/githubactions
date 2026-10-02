@@ -1,0 +1,13 @@
+name: pull request trigger
+# Triggers the workflow automatically on every git push to the main branch
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  my-first-job: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: event triggered data 
+        run: |
+            cat "$GITHUB_EVENT_PATH"
+            echo "The action was: $(jq -r '.action' "$GITHUB_EVENT_PATH")"
