@@ -27,7 +27,6 @@ jobs:
         run: |
           echo "Log level: ${{ github.event.inputs.logLevel }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
-          echo "Environment: ${{ github.event.inputs.environment }}"
         
       - name: step-2
         run: echo "I am learning GitHub Actions"
