@@ -9,8 +9,14 @@ jobs:
   hello-first:
     runs-on: ubuntu-latest
     steps:
-      - name: step-1 
+      - name: print environment variables
         run: |
             echo "Project: ${{ env.project }}"
             echo "Component: ${{ env.componenet }}"
             echo "Environment: ${{ env.environment }}"
+    
+      - name: print github context
+        env:
+          GITHUB_EVENT_PATH: ${{ toJson(github) }}
+        run: |
+            echo "GitHub Context: $GITHUB_EVENT_PATH"
