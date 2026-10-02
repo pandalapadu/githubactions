@@ -1,4 +1,4 @@
-name: Hello World
+name: Workflow Dispatch
 # Triggers the workflow automatically on every git push to the main branch
 on:
   push:
