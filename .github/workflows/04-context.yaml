@@ -8,7 +8,7 @@ env:
 jobs:
   first-job:
     outputs:
-      app-version: "${{ steps.app-version.outputs.Image-Version }}"
+      version: "${{ steps.version.outputs.Image-Version }}"
     runs-on: ubuntu-latest
     steps:
       - name: environment variables context
@@ -34,7 +34,7 @@ jobs:
             echo "Duration: $duration"
 
       - name: application version
-        id: app-version
+        id: version
         run: |
             echo "Image-Version=1.0.0" >> $GITHUB_OUTPUT
 
@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: access firstjob output variable in 2nd job
         run: |
-            echo "Application Version: ${{ needs.first-job.outputs.app-version }}"
+            echo "Application Version: ${{ needs.first-job.outputs.version }}"
 
 
 
