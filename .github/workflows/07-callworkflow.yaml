@@ -1,0 +1,14 @@
+name: call another workflow 
+on:
+  push:
+    branches:
+      - main
+jobs:
+  # 1. Define a unique ID for the execution job block
+  trigger-reusable-pipeline:
+    # 2. Point to the absolute path of the master template repository and branch
+    uses: pandalapadu/workflows/.github/workflows/nodejsEKSfeature.yaml@main
+    # 3. Pass the project configuration mapping parameters expected by the template
+    with:
+      project: 'roboshop'
+      component: 'catalogue'   
