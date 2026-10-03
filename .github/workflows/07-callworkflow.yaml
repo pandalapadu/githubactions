@@ -1,4 +1,4 @@
-name: call another workflow 
+name: Call another workflow 
 on:
   push:
     branches:
