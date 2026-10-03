@@ -25,8 +25,14 @@ jobs:
     steps:
       - name: print inputs
         run: |
-          echo "Log level: ${{ github.event.inputs.logLevel }}"
-          echo "Tags: ${{ github.event.inputs.tags }}"
-        
+          echo "Log level: ${{ inputs.logLevel }}"
+          echo "Tags: ${{ inputs.tags }}"
+          echo "Environment: ${{ inputs.environment }}"
+
       - name: step-2
         run: echo "I am learning GitHub Actions"
+
+# The Analogy Continuation: The Room Service Order Form
+# Think of inputs like the customizable options on a Room Service breakfast card that you hang on your cabin door handle:
+# • You use a pen to check boxes for exactly what you want: egg_style: Scrambled, drink: Coffee, and delivery_time: 08:00 AM.
+# • The kitchen runs the exact same cooking workflow for every guest, but they adjust the meal based on the specific checkboxes you ticked on your card.
