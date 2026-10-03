@@ -25,3 +25,27 @@ jobs:
         run: |
             echo "Adding new environment variable"
             echo "new_variable=HelloWorld" >> $GITHUB_ENV
+
+
+# The Analogy: The Flight Data Recorder (The Black Box)
+# Think of your GitHub Actions workflow run like a commercial airplane flight:
+# • The Workflow Execution: The actual journey of the plane traveling from an airport to its destination (your code moving from a commit to a production EKS cluster).
+# • The GitHub Context (${{ github }}): This is the plane’s Flight Data Recorder (The Black Box).
+# The Black Box doesn't fly the plane, but it has distinct digital memory partitions constantly tracking everything happening inside and outside the aircraft:
+# • The github partition: Tracks the flight manifest (the route, the destination branch, and the captain's pilot ID who initiated the takeoff).
+# • The inputs partition: Tracks what knobs or settings the pilot manually adjusted before leaving the gate.
+# • The steps partition: Tracks the health status of the engines (e.g., "Did Engine 1 successfully turn on, or did it fail?").
+# If any system on the plane needs to make a decision (like lighting up an emergency indicator lamp), it reads the data straight out of this central Black Box context.
+# 📁 The Core Context "Folders" You Use Most
+# GitHub breaks down the central Black Box context into specific, logical sub-folders:
+# 1. The github context folder (${{ github.xxx }})
+# Contains system metadata about the repository event hook that woke up the workflow.
+# • ${{ github.actor }} ➔ The username of the person who pushed the code (e.g., pandalapadu).
+# • ${{ github.repository }} ➔ The name of the repo (e.g., pandalapadu/argocd).
+# • ${{ github.event_name }} ➔ The trigger type (e.g., pull_request or push).
+# 2. The inputs context folder (${{ inputs.xxx }})
+# Contains the exact options manually selected by a user during a workflow_dispatch trigger.
+# • ${{ inputs.component }} ➔ e.g., mongodb or catalogue.
+# 3. The steps context folder (${{ steps.xxx }})
+# Tracks the execution health of steps that ran earlier inside the exact same job.
+# • ${{ steps.unit-tests.outcome }} ➔ Returns success or failure, letting you conditionally decide whether downstream blocks should execute.
