@@ -1,0 +1,22 @@
+name: Concurrency trigger workflow
+on:
+  push:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # by default not allows concurrent runs of the same workflow. If set to true, it will cancel any in-progress runs of the same workflow and only allow the latest run to continue.
+
+jobs:
+  hello-first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step-1 
+        run: echo "Hello, World!"
+
+      - name: step-2
+        run: |-
+         sleep 10 
+         echo "I am learning GitHub Actions"
+
+# In GitHub Actions, concurrency is a built-in control feature that ensures only one instance of a specific workflow or job runs at a time.
+# If a new pipeline run is triggered while an older one is still working on the exact same resource, GitHub will automatically put the new one in queue or cancel the older, stale run to save time and prevent infrastructure collisions.
+#
