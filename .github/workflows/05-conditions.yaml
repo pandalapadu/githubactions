@@ -6,13 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Main Branch Condition 
-        if: ${{ github.ref == 'main' }}
+        if: github.ref_name == 'main'
         run: echo "This step runs only on the main branch"
 
       - name: feature Branch Condition
-        if: ${{ github.ref != 'main' }}
+        if: github.ref_name != 'main'
         run: echo "This step runs only on the feature branch"
-        
+
 #In GitHub Actions, conditions are the logical "if/then" switches that control whether a specific job or step is allowed to run.
 #By default, GitHub Actions executes every single step in your workflow file one after another, from top to bottom. 
 #Adding a condition (using the if: keyword) tells GitHub's cloud server to pause, evaluate a specific rule, and skip that step entirely if the condition isn't met.
