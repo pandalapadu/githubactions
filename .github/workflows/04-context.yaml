@@ -37,6 +37,12 @@ jobs:
         id: version
         run: |
             echo "Image-Version=1.0.0" >> $GITHUB_OUTPUT
+      - name: job context variable
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: |
+            echo "Job Context: $JOB_CONTEXT"
+            
 
   second-job:
     runs-on: ubuntu-latest
