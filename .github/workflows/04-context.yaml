@@ -6,7 +6,9 @@ env:
     componenet: "catalogue"
     environment: "dev"
 jobs:
-  hello-first:
+  first-job:
+    outputs:
+      app-version: "${{ steps.app-version.outputs.Image-Version }}"
     runs-on: ubuntu-latest
     steps:
       - name: environment variables context
@@ -25,11 +27,25 @@ jobs:
         run: |
             echo "cource=GitHub Actions" >> $GITHUB_ENV
             echo "duration=5hr" >> $GITHUB_ENV
-            
+
       - name: use environment variable from other steps
         run: |
             echo "Course: $cource"
             echo "Duration: $duration"
+
+      - name: application version
+        id: app-version
+        run: |
+            echo "Image-Version=1.0.0" >> $GITHUB_OUTPUT
+
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    steps:
+      - name: access firstjob output variable in 2nd job
+        run: |
+            echo "Application Version: ${{ needs.first-job.outputs.app-version }}"
+
 
 
 # The Analogy: The Flight Data Recorder (The Black Box)
@@ -54,3 +70,9 @@ jobs:
 # 3. The steps context folder (${{ steps.xxx }})
 # Tracks the execution health of steps that ran earlier inside the exact same job.
 # • ${{ steps.unit-tests.outcome }} ➔ Returns success or failure, letting you conditionally decide whether downstream blocks should execute.
+
+
+# In GitHub Actions, $GITHUB_OUTPUT and $GITHUB_ENV are built-in environment variables that point to temporary storage files on the runner.
+# They act as communication channels to save data. You use them when a step inside your Linux terminal computes a piece of data (like a version number or a dynamic password) and needs to pass it forward.
+# • $GITHUB_ENV passes data to future steps in the same job.
+# • $GITHUB_OUTPUT passes data to other jobs or reusable blueprints in the workflow.
