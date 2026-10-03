@@ -11,3 +11,17 @@ jobs:
         run: |
             cat "$GITHUB_EVENT_PATH"
             echo "The action was: $(jq -r '.action' "$GITHUB_EVENT_PATH")"
+
+# The Analogy: The Cruise Ship Vacation
+# Imagine you are booking a luxury cruise vacation:
+# • GitHub Server (The Cruise Booking Agency): The corporate office that plans the trip, creates your ticket, and owns the ships.
+# • The Linux Runner (The Ship's Captain): The actual captain on the physical ship navigating the ocean.
+# Here is how the different variables fit into this cruise story:
+# 1. ${{ github.event_path }} ➔ The Booking Confirmation Email
+# This is written in GitHub’s special language (curly braces).
+# • In the Analogy: Before you ever set foot on the ship, you fill out your information on the cruise website. The corporate office processes your order and creates an internal booking manifest. If you want to print a custom welcome banner on your cabin door before the ship leaves port, the corporate office reads this data to set it up.
+# • In Plain English: GitHub reads this before it hands the job to Linux. It is used for setting up pipeline rules, like deciding if a job should run at all (if: ${{ github.event_name == 'push' }}).
+# 2. $GITHUB_EVENT_PATH ➔ The Clipboard Hanging on the Captain's Wall
+# This is a standard Linux Environment Variable (dollar sign).
+# • In the Analogy: Once you board the physical ship, the corporate office hands the Ship's Captain a physical clipboard ($) containing your data file path. While the ship is sailing, if the Chef or the Activity Director needs to look up your details, they don't call the corporate office—they just look at the captain's wall and read the clipboard file.
+# • In Plain English: This is read by the Linux operating system inside your run: shell scripts. Commands like cat, echo, and jq can see it because it lives directly inside the terminal's memory.
