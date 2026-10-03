@@ -20,3 +20,8 @@ jobs:
           GITHUB_EVENT_PATH: ${{ toJson(github) }}
         run: |
             echo "GitHub Context: $GITHUB_EVENT_PATH"
+
+      - name: add environment variable
+        run: |
+            echo "Adding new environment variable"
+            echo "new_variable=HelloWorld" >> $GITHUB_ENV
