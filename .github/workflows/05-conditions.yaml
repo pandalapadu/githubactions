@@ -1,0 +1,29 @@
+name: Conditions workflow
+on:
+  push:
+jobs:
+  hello-first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Main Branch Condition 
+        if: ${{ github.ref == 'main' }}
+        run: echo "This step runs only on the main branch"
+
+      - name: feature Branch Condition
+        if: ${{ github.ref != 'main' }}
+        run: echo "This step runs only on the feature branch"
+        
+#In GitHub Actions, conditions are the logical "if/then" switches that control whether a specific job or step is allowed to run.
+#By default, GitHub Actions executes every single step in your workflow file one after another, from top to bottom. 
+#Adding a condition (using the if: keyword) tells GitHub's cloud server to pause, evaluate a specific rule, and skip that step entirely if the condition isn't met.
+
+# The Analogy: The Automated Toll Booth Gate
+# Think of your workflow pipeline execution like an Automated Highway Toll Booth:
+# • The Workflow Workflow Execution: Cars traveling down the road (your steps moving forward sequentially).
+# • The Default Behavior: A wide-open lane. Every step drives right through without stopping.
+# • The Condition (if:): This is a rigid physical drop-gate barrier blocking the lane with a digital scanner panel attached to it.
+# The barrier will only swing open and let the car pass if the scanner verifies a specific criterion:
+# 1. The Branch Condition: "Is this car an authorized emergency vehicle?" (e.g., Is this commit pushing to the main branch?).
+# 2. The Status Condition: "Did the previous driver pay their toll fee successfully, or did they crash?" (e.g., Did the Unit test step pass or fail?).
+# 3. The Input Condition: "Did the user manually select 'Premium Fast Pass' on their room card form?" (e.g., Did the user choose environment: prod in the manual form?).
+# If the scanner panel reads the data and returns false, the gate stays down, the car is turned around, and that specific step is completely bypassed.
