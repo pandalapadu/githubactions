@@ -45,6 +45,13 @@ jobs:
       - name: access firstjob output variable in 2nd job
         run: |
             echo "Application Version: ${{ needs.first-job.outputs.version }}"
+  
+  third-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: third job testing
+        run: |
+            echo "Application Version"
 
 
 
