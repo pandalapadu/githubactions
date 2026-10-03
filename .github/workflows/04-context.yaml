@@ -9,22 +9,27 @@ jobs:
   hello-first:
     runs-on: ubuntu-latest
     steps:
-      - name: print environment variables
+      - name: environment variables context
         run: |
-            echo "Project: ${{ env.project }}"
-            echo "Component: ${{ env.componenet }}"
-            echo "Environment: ${{ env.environment }}"
-    
-      - name: print github context
+            echo "Project: $project"
+            echo "Component: $componenet"
+            echo "Environment: $environment"
+
+      - name: github context variable
         env:
           GITHUB_EVENT_PATH: ${{ toJson(github) }}
         run: |
             echo "GitHub Context: $GITHUB_EVENT_PATH"
 
-      - name: add environment variable
+      - name: environment variable to use other steps
         run: |
-            echo "Adding new environment variable"
-            echo "new_variable=HelloWorld" >> $GITHUB_ENV
+            echo "cource=GitHub Actions" >> $GITHUB_ENV
+            echo "duration=5hr" >> $GITHUB_ENV
+            
+      - name: use environment variable from other steps
+        run: |
+            echo "Course: $cource"
+            echo "Duration: $duration"
 
 
 # The Analogy: The Flight Data Recorder (The Black Box)
